@@ -20,35 +20,15 @@ int C(int n) {
     return (n - 1) * n / 2;
 }
 
-/*
-int heuristic1(pair<vector<int>,int> data) {
-    int result = 0;
-    for(int i = 0 ; i < n - 1; i++) {
-        for(int j = i + 1 ; j < n; j++){
-            if(j - i == data.first[j] - data.first[i] || data.first[i] + i == data.first[j] + j){
-                result++;
-            }
-        }
-    }
-    return result;
-}
-*/
-
 void init() {
     cout << "Input n = ";
     cin >> n;
     T = n;
     srand(time(0));
-    vector<int> a;
     for(int i = 0; i < n; i++) {
-        a.push_back(i);
-        //data.first.push_back(i);
+        data.first.push_back(i);
     }
-    for(int i = 0; i < n; i++) {
-        int temp = random() % a.size();
-        data.first.push_back(a[temp]);
-        a.erase(a.begin() + temp);
-    }
+    random_shuffle(data.first.begin(), data.first.end());
     int result = 0;
     for(int i = 0 ; i < n - 1; i++) {
         for(int j = i + 1 ; j < n; j++){
@@ -72,11 +52,7 @@ int heuristic(pair<vector<int>,int> data) {
     }
     sort(temp1, temp1 + n);
     sort(temp2, temp2 + n);
-    int *temp3, *temp4;
-    temp3 = new int[n];
-    temp4 = new int[n];
     int i = 0;
-    int len1 = 0;
     while(i < n-1) {
         int j = i + 1;
         int count = 1;
@@ -84,16 +60,13 @@ int heuristic(pair<vector<int>,int> data) {
             j++;
             count++;
         }
-        temp3[len1] = count;
-        len1++;
+        result += C(count);
         i = j;
         if(j >= n) {
-            temp3[len1] = '\0';
             break;
         }
     }
     i = 0;
-    int len2 = 0;
     while(i < n-1) {
         int j = i + 1;
         int count = 1;
@@ -101,28 +74,14 @@ int heuristic(pair<vector<int>,int> data) {
             j++;
             count++;
         }
-        temp4[len2] = count;
-        len2++;
+        result += C(count);
         i = j;
         if (j >= n) {
-            temp4[len2] = '\0';
             break;
         }
     }
-    i = 0;
-    while(i < len1) {
-        result += C(temp3[i]);
-        i++;
-    }
-    i = 0;
-    while(i < len2) {
-        result += C(temp4[i]);
-        i++;
-    }
     delete(temp1);
     delete(temp2);
-    delete(temp3);
-    delete(temp4);
     return result;
 }
 
