@@ -1,2 +1,2 @@
-# heuristic-queen
+# Heuristic-queen
 n-Queens Problem has complexity O(n^2)
