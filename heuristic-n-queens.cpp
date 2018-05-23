@@ -38,7 +38,7 @@ void init() {
 
 pair<vector<int>,int> Next_move(pair<vector<int>,int> data, int i, int j) {
     pair<vector<int>,int> temp = data;
-    int xungDot = data.second;
+    int heuristic = data.second;
     int jj = data.first[i];
     int ii = data.first[j];
     temp.first[i] = ii;
@@ -68,7 +68,7 @@ pair<vector<int>,int> Next_move(pair<vector<int>,int> data, int i, int j) {
             }
         }
     }
-    temp.second = (xungDot - dem2 + dem1);
+    temp.second = (heuristic - dem2 + dem1);
     return temp;
 }
 
