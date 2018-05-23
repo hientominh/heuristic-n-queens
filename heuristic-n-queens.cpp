@@ -43,32 +43,32 @@ pair<vector<int>,int> Next_move(pair<vector<int>,int> data, int i, int j) {
     int ii = data.first[j];
     temp.first[i] = ii;
     temp.first[j] = jj;
-    int dem1 = 0, dem2 = 0;
+    int count1 = 0, count2 = 0;
 
     for (int k = 0; k < data.first.size(); k++) {
         if (k != i) {
             if (ii + i == temp.first[k] + k
                 || ii - i == temp.first[k] - k) {
-                dem1++;
+                count1++;
             }
 
             if (jj + i == data.first[k] + k
                 || jj - i == data.first[k] - k) {
-                dem2++;
+                count2++;
             }
         }
         if (k != j) {
             if (jj + j == temp.first[k] + k
                 || jj - j == temp.first[k] - k) {
-                dem1++;
+                count1++;
             }
             if (ii + j == data.first[k] + k
                 || ii - j == data.first[k] - k) {
-                dem2++;
+                count2++;
             }
         }
     }
-    temp.second = (heuristic - dem2 + dem1);
+    temp.second = (heuristic - count2 + count1);
     return temp;
 }
 
